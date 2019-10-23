@@ -43,11 +43,12 @@ def CompareBitbnsAndWazrixData():
     wazirxDict =my_dictionary()
     for key in bitbnsdata:
         coins.append(key.upper())
-        bitbnsDict.add(key.upper() , bitbnsdata[key]["last_traded_price"])
+        bitbnsDict.add(key.upper() , bitbnsdata[key]["lowest_sell_bid"])
         
     for key in wazirxdata['markets']:
         if key['quoteMarket']=='inr':
-            wazirxDict.add(key['baseMarket'].upper(),key['last'])
+            if float(key['sell'] > 0:
+                wazirxDict.add(key['baseMarket'].upper(),key['sell'])
     return coins,bitbnsDict,wazirxDict
     
 
@@ -68,10 +69,8 @@ def CompareThePriceInTwoExchanges(coin,bitbns,wazirx):
         amountAvailable = 10000
         acquirableCoins = amountAvailable / float(low)
         profit = (acquirableCoins* float(max)) - amountAvailable          
-        print("Buy ",coin," from",lowexchange,"at ",low," you get ",acquirableCoins," and sell at ",maxexchange," at ",max," to get ",profit)
+        print("Buy ",coin," from",lowexchange,"at ",low," you get ",acquirableCoins," and sell at ",maxexchange," at ",max," to get ",profit,"rs /",(profit/amountAvailable)*100,"%")
         
 coins,bitbnsDict,wazirxDict = CompareBitbnsAndWazrixData()
 for coin in coins:
     CompareThePriceInTwoExchanges(coin,bitbnsDict,wazirxDict)
-
-
