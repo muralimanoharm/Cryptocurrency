@@ -64,4 +64,8 @@ for i in data:
             print("Error :", i['id'])
 
 c = Counter(LikesCount)
-print(c.most_common(40))
+topCoins = c.most_common(len(LikesCount))
+
+with open("OrderedLikesCount.json", "w+") as file:
+    file.seek(0)
+    json.dump(topCoins, file)
